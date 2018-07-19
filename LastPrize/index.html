@@ -13,8 +13,13 @@
 		  <h1>{{rand}}</h1>
 	</center>
 </div>
-</body>
-<style>
+</body><style>
+html,.title-prize{
+	background-color: #1d1d1b;
+}
+h1,h2,h3,span,.title-prize,.listlucky{
+	color: white;
+}
 button{
 	padding: 36px;
 	border-radius: 8px;
@@ -38,5 +43,48 @@ h1 {
     font-family: verdana;
     font-size: 52px;
 }
+h2 {
+	margin: 0px;
+	font-size: 49px;
+}
+h3{
+	display: inline-block;
+}
+ul{
+	padding-left: 200px;
+}
+li{
+	list-style-type: none;
+	width: 50%;
+	display: inline-block;
+	/*text-overflow: ellipsis;*/
+	white-space: nowrap;
+	overflow: hidden;
+}
+.title-prize {
+	margin: 0px;
+    font-size: 56px;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+    border: none;
+    text-align: center;
+}
+.amount {
+	width: 200px;
+	display: inline-block;
+	margin: 0px;
+    padding: 5px;
+    font-size: 24px;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px 0 rgba(64, 161, 74, 0.3);
+    border: solid 1px #8dc63f;
+}
+.listlucky{
+	margin: 0 auto;
+	max-width: 930px;
+}
+
 </style>
 </html>

@@ -9,11 +9,11 @@
 <div ng-controller="myCtrl">
 	<center style="margin-top: 5vh;">
 		<!-- <button ng-click="shuffle()"> RANDOM </button> -->
-		<img src="http://via.placeholder.com/350x150">
+		<img src="logo.jpg" width="350px">
 		<h2>รางวัล</h2>
 		<input class="title-prize" type="text" ng-model="titlePrize">
 		<h3>จำนวน</h3>
-		<input class="amount" type="number" ng-model="amount" min="0" max="99" maxlength="2" width="200px"> &nbsp;รางวัล
+		<input class="amount" type="number" ng-model="amount" min="0" max="99" maxlength="2" width="200px"> &nbsp;<span>รางวัล</span>
 		<br>
 		<button style="margin-top:20px" ng-click="randomFunc()"> RANDOM NO REPEAT </button>
 		</center>
@@ -27,6 +27,12 @@
 </div>
 </body>
 <style>
+html,.title-prize{
+	background-color: #1d1d1b;
+}
+h1,h2,h3,span,.title-prize,.listlucky{
+	color: white;
+}
 button{
 	padding: 36px;
 	border-radius: 8px;
@@ -70,7 +76,6 @@ li{
 }
 .title-prize {
 	margin: 0px;
-    padding: 35px;
     font-size: 56px;
     outline: none;
     border-radius: 4px;
