@@ -7,10 +7,13 @@
 <div ng-controller="myCtrl">
 	<p>{{temparr}}</p>
 
-	<center style="margin-top: 35vh;">
+	<center style="margin-top: 5vh;">
 		<!-- <button ng-click="shuffle()"> RANDOM </button> -->
+		<img src="logo.jpg" width="350px">
+		<h2>รางวัล</h2>
+		<input class="title-prize" type="text" ng-model="titlePrize">
 		<button ng-click="randomFunc()"> RANDOM </button>
-		  <h1>{{rand}}</h1>
+		  <h1 ng-if="rand != []">{{rand}}</h1>
 	</center>
 </div>
 </body><style>
@@ -39,7 +42,6 @@ button:active{
 	background-image: linear-gradient(to left, #456323, #94af29);
 }
 h1 {
-    color: black;
     font-family: verdana;
     font-size: 52px;
 }
