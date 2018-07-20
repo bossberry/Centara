@@ -5,7 +5,7 @@
 <body ng-app="myApp" >
 
 <div ng-controller="myCtrl">
-	<p>{{temparr}}</p>
+	<!-- <p>{{temparr}}</p> -->
 
 	<center style="margin-top: 5vh;">
 		<!-- <button ng-click="shuffle()"> RANDOM </button> -->
@@ -13,7 +13,8 @@
 		<h2>รางวัล</h2>
 		<input class="title-prize" type="text" ng-model="titlePrize">
 		<button ng-click="randomFunc()"> RANDOM </button>
-		  <h1 ng-if="rand != []">{{rand}}</h1>
+		  <h1 ng-if="rand != [] && rand != 'คนรับรางวัลหมดแล้ว'">{{rand[0]}} <span ng-if="rand[2]">-</span> {{rand[2]}}</h1>
+		  <h1 ng-if="rand === 'คนรับรางวัลหมดแล้ว'">{{rand}}</h1>
 	</center>
 </div>
 </body><style>
@@ -47,7 +48,7 @@ h1 {
 }
 h2 {
 	margin: 0px;
-	font-size: 49px;
+	font-size: 40px;
 }
 h3{
 	display: inline-block;
@@ -71,6 +72,7 @@ li{
     width: 100%;
     border: none;
     text-align: center;
+    height: 82px;
 }
 .amount {
 	width: 200px;

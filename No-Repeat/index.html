@@ -15,11 +15,11 @@
 		<h3>จำนวน</h3>
 		<input class="amount" type="number" ng-model="amount" min="0" max="99" maxlength="2" width="200px"> &nbsp;<span>รางวัล</span>
 		<br>
-		<button style="margin-top:20px" ng-click="randomFunc()"> RANDOM NO REPEAT </button>
+		<button style="margin-top:20px" ng-click="randomFunc()"> RANDOM</button>
 		</center>
 		<div class="listlucky">
 			<ul>
-				<li ng-repeat="data in rand">{{$index + 1}}. {{data[0]}} - {{data[1]}}</li>
+				<li ng-repeat="data in rand">{{$index + 1}}. {{data[0]}} - {{data[2]}}</li>
 			</ul>
 		</div>
 		  <!-- <h1>{{rand}}</h1> -->
@@ -58,7 +58,7 @@ h1 {
 }
 h2 {
 	margin: 0px;
-	font-size: 49px;
+	font-size: 40px;
 }
 h3{
 	display: inline-block;
@@ -82,6 +82,7 @@ li{
     width: 100%;
     border: none;
     text-align: center;
+    height: 82px;
 }
 .amount {
 	width: 200px;

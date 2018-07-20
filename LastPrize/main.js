@@ -5,7 +5,7 @@ app.controller('myCtrl', function($scope, $document, $http) {
 	$document.ready(function() {
 		$http({
 	      method: 'GET',
-	      url: 'file/test.csv'
+	      url: 'file/FullTest-file.csv'
 	   }).then(function (response){
 	   	$scope.processData(response.data);
 	   },function (error){
@@ -21,7 +21,8 @@ app.controller('myCtrl', function($scope, $document, $http) {
 		if($scope.data.sort(function(){return Math.round(Math.random());})[0] === undefined) {
 			$scope.rand = 'คนรับรางวัลหมดแล้ว';
 		} else {
-			$scope.rand = $scope.data.pop($scope.data.sort(function(){return Math.round(Math.random());}))[0];
+			$scope.rand = $scope.data.pop($scope.data.sort(function(){return Math.round(Math.random());}));
+			console.log($scope.rand);
 		}
 		$scope.temparr.push($scope.rand);
 		// console.log($scope.temparr);

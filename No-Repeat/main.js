@@ -7,7 +7,7 @@ app.controller('myCtrl', function($scope, $document, $http) {
 		$http({
 	      method: 'GET',
 	      // url: 'file/users.csv'
-	      url: 'file/users-publish.csv'
+	      url: 'file/FullTest-file.csv'
 	   }).then(function (response){
 	   	$scope.processData(response.data);
 	   },function (error){
@@ -25,21 +25,27 @@ app.controller('myCtrl', function($scope, $document, $http) {
 
 	});
 	$scope.temparr = [];
-	$scope.rand = [];
 	$scope.count = 0;
 	$scope.randomFunc = function(){
+		$scope.rand = [];
 		var loop = $scope.amount
 		for(var i = 0; i < loop; i ++) {
 			var randdata = $scope.data.sort(function(){return Math.round(Math.random());})[0];
-			console.log(randdata);
-			// $scope.rand.indexOf(randdata) === -1 ? $scope.rand.push(randdata) : $scope.amount++;
-			if($scope.rand.indexOf(randdata) === -1) {
-				if($scope.dataTemp.indexOf(randdata[0]) === -1){
-					$scope.rand.push(randdata)
-				}
+			var checkoutloop = $scope.dataTemp.length + $scope.rand.length;
+			if(checkoutloop=== $scope.data.length) {
+				$scope.genCsv();
+				return;
 			} else {
-				loop++;
-			}		
+				if($scope.rand.indexOf(randdata) === -1) {
+					if($scope.dataTemp.indexOf(randdata[0]) === -1){
+						$scope.rand.push(randdata)
+					} else {
+					loop++;
+					}
+				} else {
+					loop++;
+				}		
+			}
 			// $scope.rand.push($scope.data.sort(function(){return Math.round(Math.random());})[0]);
 		}
 
@@ -54,11 +60,13 @@ app.controller('myCtrl', function($scope, $document, $http) {
 		            result = '"' + result + '"';
 		        if (j > 0)
 		            finalVal += ',';
-		        var num = i+1;
-		        finalVal += num + '.' + result;
+		        finalVal += result;
+		        // var num = i+1;
+		        // finalVal += num + '.' + result;
 		    }
 		    
 		    finalVal += '\n';
+		    // console.log(finalVal);
 		}
 		if($scope.rand.length != 0){
 			var pom = document.createElement('a');
@@ -74,6 +82,41 @@ app.controller('myCtrl', function($scope, $document, $http) {
 		window.localStorage.setItem('Name' + $scope.count , $scope.rand);
 		window.localStorage.setItem('Name list' , $scope.temparr);
 		// $scope.rand = $scope.data[Math.floor(Math.random() * $scope.data.length)][0];
+	};
+
+	$scope.genCsv = function() {
+		var finalVal = '';
+		for (var i = 0; i < $scope.rand.length; i++) {
+		    var value = $scope.rand[i];
+		    
+		    for (var j = 0; j < value.length; j++) {
+		        var innerValue = value[j];
+		        var result = innerValue.replace(/"/g, '""');
+		        if (result.search(/("|,|\n)/g) >= 0)
+		            result = '"' + result + '"';
+		        if (j > 0)
+		            finalVal += ',';
+		        finalVal += result;
+		        // var num = i+1;
+		        // finalVal += num + '.' + result;
+		    }
+		    
+		    finalVal += '\n';
+		    // console.log(finalVal);
+		}
+		if($scope.rand.length != 0){
+			var pom = document.createElement('a');
+			pom.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(finalVal));
+			pom.setAttribute('download', $scope.titlePrize + '-file.csv');
+			pom.click();
+		}
+		
+		// $scope.rand = $scope.data.pop($scope.data.sort(function(){return Math.round(Math.random());}))[0];
+		$scope.temparr.push($scope.rand);
+		
+		$scope.count += 1;
+		window.localStorage.setItem('Name' + $scope.count , $scope.rand);
+		window.localStorage.setItem('Name list' , $scope.temparr);
 	};
 
 	$scope.processData = function(allText) {
